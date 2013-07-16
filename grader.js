@@ -28,7 +28,9 @@ var rest = require('restler');
 
 var HTMLFILE_DEFAULT = "index.html";
 var CHECKSFILE_DEFAULT = "checks.json";
-var URL_DEFAULT = "http://fierce-reaches-1073.herokuapp.com";
+var URL_DEFAULT = "http://whispering-spire-7907.herokuapp.com/";
+
+var checksfile = null;
 
 var assertFileExists = function(infile) {
     var instr = infile.toString();
@@ -39,14 +41,14 @@ var assertFileExists = function(infile) {
     return instr;
 };
 
-var assertUrlExists = function(url){
+var getUrl = function(url){
     
-    rest.get(url).on('complete', function(result) {
+    rest.get(url).on('complete', function(result, checksfile) {
 	if (result instanceof Error) {
 	    console.log('Error: ' + result.message);
 	    this.retry(5000); // try again after 5 sec
 	} else {
-	    return result;
+	    checkUrlFile(result);
 	}
     });
 
@@ -68,18 +70,23 @@ var checkHtmlFile = function(htmlfile, checksfile) {
         var present = $(checks[ii]).length > 0;
         out[checks[ii]] = present;
     }
-    return out;
+    var outJson = JSON.stringify(out, null, 4);
+    console.log(outJson);
+   
 };
 
-var checkUrlFile = function(urlfile, checksfile) {
-    $ = cheerio.load(urlfile);
+var checkUrlFile = function(html_code) {
+    $ = cheerio.load(html_code);
+    //console.log($('*').html());
     var checks = loadChecks(checksfile).sort();
     var out = {};
     for(var ii in checks) {
         var present = $(checks[ii]).length > 0;
         out[checks[ii]] = present;
     }
-    return out;
+    var outJson = JSON.stringify(out, null, 4);
+    console.log(outJson);
+    process.exit(1);
 };
 
 var clone = function(fn) {
@@ -92,30 +99,33 @@ if(require.main == module) {
     program
         .option('-c, --checks <check_file>', 'Path to checks.json', clone(assertFileExists), CHECKSFILE_DEFAULT)
         .option('-f, --file <html_file>', 'Path to index.html', clone(assertFileExists), HTMLFILE_DEFAULT)
-	.option('-u, --url <url_file>', 'Path to index.html', clone(assertUrlExists), URL_DEFAULT)
+	.option('-u, --url <url_file>', 'Path to index.html', clone(getUrl), URL_DEFAULT)
         .parse(process.argv);
 
     var myArgs = process.argv.slice(2);
-    console.log(myArgs[2]);
-    console.log(myArgs[3]);
+
+    //console.log(myArgs[0]);
+    //console.log(myArgs[1]);
+    //console.log(myArgs[2]);
+    //console.log(myArgs[3]);
 
     switch(myArgs[2]){
 	case '--file':
 	case '-f':
-	console.log("file detected");
-	var checkJson = checkHtmlFile(program.file, program.checks);
+	//console.log("file detected");
+	checkHtmlFile(myArgs[3], myArgs[1]);
 	break;
 
 	case '--url':
 	case '-u':
-	console.log("url detected");
-	var checkJson = checkUrlFile(program.url, program.checks);
+	//console.log("url detected");
+	checksfile = myArgs[1];
+	getUrl(myArgs[3]);
 	break;
     }
 
     
-    var outJson = JSON.stringify(checkJson, null, 4);
-    console.log(outJson);
+    
 } else {
     exports.checkHtmlFile = checkHtmlFile;
 }
