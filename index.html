@@ -12,10 +12,9 @@
     <link href="http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,300,400,600,700,800" 
           rel="stylesheet" type="text/css">
-          
     <style type="text/css">
-     
-     /* Large desktop */
+
+      /* Large desktop */
       @media (min-width: 980px) { 
         body {
          padding-top: 60px;
@@ -26,9 +25,9 @@
        .linediv-r {
          border-left: 1px white solid;
        }
-      }   
-        
-     /* Landscape phones and down */
+      }
+
+      /* Landscape phones and down */
       @media (max-width: 480px) { 
        .copy {
          padding: 2.5% 10%;
@@ -39,23 +38,18 @@
        .linediv-r {
          border-top: 1px white solid;
        }
-      }   
-    
-        
-     
+      }
+
       /* All form factors */
 
-      /* Main body and headings */   
-        
-      body {
+      /* Main body and headings */
+      body{
         font-family: 'Open Sans', Helvetica, Arial, sans-serif;
       }
-      
       .heading, .subheading {
         font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
         text-align: center;
-      } 
-      
+      }
       p.lead {
         padding-top: 1.5%;
         font-size: 24px;
@@ -65,7 +59,7 @@
         font-size: 18px;
         line-height: 24px;
       }
-      
+
       /* Video pitch and Action */
       .pitch {
         padding: 2.5% 0%;
@@ -83,8 +77,7 @@
       .statistics h3, .statistics p {
         color: white;
       }
-      
-      
+
       /* Marketing Copy and Footer */
       .copy {
         padding-top: 2.5%;
@@ -104,14 +97,10 @@
       .footer a {
         color: #ccccff;
       }
-      
-      
-      
-    
     </style>
   </head>
   <body>
-      
+
     <!-- Mobile-friendly navbar adapted from example. -->
     <!-- http://twitter.github.io/bootstrap/examples/starter-template.html -->
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -134,7 +123,7 @@
         </div>
       </div>
     </div>
-    
+
     <!-- We use row-fluid inside containers to achieve a resizable layout. -->
     <!-- blogs.endjin.com/2013/04/tips-for-implementing-responsive-designs-using-bootstrap/ -->
     <!-- http://stackoverflow.com/a/12270322 -->
@@ -156,13 +145,14 @@
       </div>
       <div class="row-fluid pitch">
         <div class="span5 offset1 video">
-          <img class="img-polaroid" src="http://i.imgur.com/Ajox5sG.jpg?1">  <!-- http://i.imgur.com/XwqKr8N.png?1 -->
+          <img class="img-polaroid" src="http://i.imgur.com/Ajox5sG.jpg?1">
         </div>
 
         <!-- We define a new 'actions' div to contain statistics, order, and share buttons.-->
         <div class="span5 actions">
+          <div class="row-fluid">
           <div class="span8 offset2">
-            <div class="statistics">
+            <div class="row-fluid statistics">
               <div class="span4">
                 <!-- linediv-l and linediv-r give dividing lines that look
                 different in horizontal and vertical layouts, illustrating
@@ -173,7 +163,7 @@
               </div>
               <div class="span4">
                 <div class="linediv-c">
-                  <h3>$1000</h3> <p>of $16,000</p>
+                  <h3>$6000</h3> <p>of $10,000</p>
                 </div>
               </div>
               <div class="span4">
@@ -183,6 +173,7 @@
               </div>
             </div>
           </div>
+          <div class="row-fluid">
           <div class="span10 offset1">
             <!-- Bootstrap progress bar -->
             <!-- http://twitter.github.io/bootstrap/components.html#progress -->
@@ -191,21 +182,26 @@
               <div class="bar bar-warning" style="width: 40%;"></div>
             </div>
           </div>
+          </div>
+          <div class="row-fluid">
           <div class="span6 offset3 order">
             <!-- Standard Bootstrap button. -->
             <!-- http://twitter.github.io/bootstrap/base-css.html#buttons -->
             <button class="btn btn-success btn-large">Preorder</button>
           </div>
+          </div>
+          <div class="row-fluid">
           <div class="span8 offset2 social">
             <!-- Social buttons are not included in default Bootstrap. -->
             <!-- See: http://noizwaves.github.io/bootstrap-social-buttons -->
             <button class="btn btn-twitter"><i class="icon-twitter"></i> | Twitter</button>
             <button class="btn btn-facebook"><i class="icon-facebook"></i> | Facebook</button>
           </div>
+          </div>
+        </div>
         </div>
       </div>
-      
-      
+
       <!-- Beyond this part the marketing copy begins. -->
       <!-- https://developer.mozilla.org/en-US/docs/Web/CSS/text-align -->
       <!-- http://twitter.github.io/bootstrap/base-css.html#images -->
@@ -240,7 +236,6 @@
           </p>
         </div>
         <div class="span5 asset">
-          <!-- <img class="img-polaroid" src="http://i.imgur.com/SsmvwuL.jpg?1"> -->
           <img class="img-polaroid" src="http://i.imgur.com/AmceaJT.jpg?1">
         </div>
       </div>
@@ -295,7 +290,5 @@
         </div>
       </div>
     </div>
-    
-    
   </body>
 </html>
